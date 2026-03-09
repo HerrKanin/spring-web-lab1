@@ -38,9 +38,11 @@
     <div>
         <label>Published Date:</label>
         <input type="text" th:field="*{publishedDate}">
+        <small>Format: yyyy-MM-dd</small>
         <div class="error"
-             th:if="${#fields.hasErrors('publishedDate')}"
-             th:errors="*{publishedDate}"></div>
+             th:if="${#fields.hasErrors('publishedDate')}">
+            Please enter date in format yyyy-MM-dd
+        </div>
     </div>
 
     <div>
