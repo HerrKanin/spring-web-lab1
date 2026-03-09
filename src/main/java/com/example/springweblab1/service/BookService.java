@@ -43,4 +43,11 @@ public class BookService {
     public void deleteBook(Long id){
         bookRepository.deleteById(id);
     }
+
+    public BookDTO getById(Long id){
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+
+        return BookMapper.toDTO(book);
+    }
 }

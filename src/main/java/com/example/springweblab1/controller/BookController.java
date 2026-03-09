@@ -1,13 +1,12 @@
 package com.example.springweblab1.controller;
 
+import com.example.springweblab1.dto.BookDTO;
 import com.example.springweblab1.dto.CreateBookDTO;
+import com.example.springweblab1.dto.UpdateBookDTO;
 import com.example.springweblab1.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/books")
@@ -15,25 +14,55 @@ public class BookController {
 
     private final BookService bookService;
 
-    public BookController(BookService bookService){
+    public BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
     @GetMapping
-    public String listBooks(Model model){
+    public String listBooks(Model model) {
         model.addAttribute("books", bookService.getAll());
         return "books/list";
     }
 
     @GetMapping("/create")
-    public String showCreateForm(Model model){
+    public String showCreateForm(Model model) {
         model.addAttribute("book", new CreateBookDTO());
         return "books/create";
     }
 
     @PostMapping("/create")
-    public String createBook(@ModelAttribute("book") CreateBookDTO dto){
+    public String createBook(@ModelAttribute("book") CreateBookDTO dto) {
         bookService.createBook(dto);
+        return "redirect:/books";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return "redirect:/books";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+
+        BookDTO book = bookService.getById(id);
+
+        UpdateBookDTO dto = new UpdateBookDTO();
+        dto.setId(book.getId());
+        dto.setTitle(book.getTitle());
+        dto.setDescription(book.getDescription());
+        dto.setPublishedDate(book.getPublishedDate());
+        dto.setAuthor(book.getAuthor());
+        dto.setPages(book.getPages());
+
+        model.addAttribute("book", dto);
+
+        return "books/edit";
+    }
+
+    @PostMapping("/edit")
+    public String updateBook(@ModelAttribute("book") UpdateBookDTO dto) {
+        bookService.updateBook(dto);
         return "redirect:/books";
     }
 

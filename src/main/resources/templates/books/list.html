@@ -15,6 +15,7 @@
         <th>Title</th>
         <th>Author</th>
         <th>Pages</th>
+        <th>Action</th>
     </tr>
     </thead>
 
@@ -23,6 +24,14 @@
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
         <td th:text="${book.pages}"></td>
+
+        <td>
+            <a th:href="@{/books/edit/{id}(id=${book.id})}">Edit</a>
+
+            <form th:action="@{/books/delete/{id}(id=${book.id})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
     </tr>
 
     </tbody>

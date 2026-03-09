@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create Book</title>
+    <title>Edit Book</title>
 </head>
 <body>
 
-<h1>Create Book</h1>
+<h1>Edit Book</h1>
 
-<form th:action="@{/books/create}" th:object="${book}" method="post">
+<form th:action="@{/books/edit}" th:object="${book}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
     <div>
         <label>Title:</label>
         <input type="text" th:field="*{title}">
@@ -33,10 +36,12 @@
         <input type="text" th:field="*{pages}">
     </div>
 
-    <button type="submit">Save</button>
+    <div>
+        <button type="submit">Update</button>
+    </div>
 </form>
 
-<a th:herf="@{books}">Back to list</a>
+<a th:href="@{/books}">Back to list</a>
 
 </body>
 </html>
