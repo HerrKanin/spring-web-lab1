@@ -23,11 +23,12 @@ public class BookMapper {
     public static BookDTO toDTO(Book book){
         BookDTO dto = new BookDTO();
 
-        book.setTitle(book.getTitle());
-        book.setDescription(book.getDescription());
-        book.setPublishedDate(book.getPublishedDate());
-        book.setAuthor(book.getAuthor());
-        book.setPages(book.getPages());
+        dto.setId((book.getId()));
+        dto.setTitle(book.getTitle());
+        dto.setDescription(book.getDescription());
+        dto.setPublishedDate(book.getPublishedDate());
+        dto.setAuthor(book.getAuthor());
+        dto.setPages(book.getPages());
 
         return dto;
     }

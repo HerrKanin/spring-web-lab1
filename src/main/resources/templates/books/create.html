@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Book</title>
+</head>
+<body>
+
+<h1>Create Book</h1>
+
+<form th:action="@{/books/create}" th:object="${book}" method="post">
+    <div>
+        <label>Title:</label>
+        <input type="text" th:field="*{title}">
+    </div>
+
+    <div>
+        <label>Description</label>
+        <input type="text" th:field="*{description}">
+    </div>
+
+    <div>
+        <label>Published Date</label>
+        <input type="text" th:field="*{publishedDate}">
+    </div>
+
+    <div>
+        <label>Author</label>
+        <input type="text" th:field="*{author}">
+    </div>
+
+    <div>
+        <label>Pages</label>
+        <input type="text" th:field="*{pages}">
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+
+<a th:herf="@{books}">Back to list</a>
+
+</body>
+</html>
