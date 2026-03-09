@@ -25,43 +25,57 @@
     <div>
         <label>Title:</label>
         <input type="text" th:field="*{title}">
+
         <div class="error"
              th:if="${#fields.hasErrors('title')}"
-             th:errors="*{title}"></div>
+             th:errors="*{title}">
+        </div>
     </div>
 
     <div>
         <label>Description:</label>
         <input type="text" th:field="*{description}">
+
         <div class="error"
              th:if="${#fields.hasErrors('description')}"
-             th:errors="*{description}"></div>
+             th:errors="*{description}">
+        </div>
     </div>
 
     <div>
         <label>Published Date:</label>
         <input type="text" th:field="*{publishedDate}">
         <small>Format: yyyy-MM-dd</small>
+
         <div class="error"
-             th:if="${#fields.hasErrors('publishedDate')}">
-            Please enter date in format yyyy-MM-dd
+             th:if="${publishedDateError != null}"
+             th:text="${publishedDateError}">
+        </div>
+
+        <div class="error"
+             th:if="${publishedDateError == null and #fields.hasErrors('publishedDate')}"
+             th:errors="*{publishedDate}">
         </div>
     </div>
 
     <div>
         <label>Author:</label>
         <input type="text" th:field="*{author}">
+
         <div class)="error"
              th:if="${#fields.hasErrors('author')}"
-             th:errors="*{author}"></div>
+             th:errors="*{author}">
+        </div>
     </div>
 
     <div>
         <label>Pages:</label>
-        <input type="text" th:field="*{pages}">
+        <input type="number" th:field="*{pages}">
+
         <div class="error"
              th:if="${#fields.hasErrors('pages')}"
-             th:errors="*{pages}"></div>
+             th:errors="*{pages}">
+        </div>
     </div>
 
     <div>

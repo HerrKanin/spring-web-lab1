@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -15,7 +16,8 @@ public class UpdateBookDTO {
     @NotBlank(message = "Description is required" )
     private String description;
     @NotNull(message = "Published date is required")
-    @PastOrPresent(message = "Date must be today or earlier")
+    @PastOrPresent(message = "Date can't be in the future")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publishedDate;
     @NotBlank(message = "Author is required")
     private String author;

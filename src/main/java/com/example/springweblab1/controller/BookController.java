@@ -33,9 +33,17 @@ public class BookController {
     }
 
     @PostMapping("/create")
-    public String createBook(@Valid @ModelAttribute("book") CreateBookDTO dto, BindingResult result) {
+    public String createBook(@Valid @ModelAttribute("book") CreateBookDTO dto, BindingResult result, Model model) {
 
         if(result.hasErrors()){
+            if (result.hasFieldErrors("publishedDate")){
+                String code = result.getFieldError("publishedDate").getCode();
+
+                if("typeMismatch".equals(code)) {
+                    model.addAttribute("publishedDateError",
+                            "Please enter date in format yyyy-MM-dd");
+                }
+            }
             return "books/create";
         }
 
@@ -68,8 +76,18 @@ public class BookController {
     }
 
     @PostMapping("/edit")
-    public String updateBook(@Valid @ModelAttribute("book") UpdateBookDTO dto, BindingResult result) {
+    public String updateBook(@Valid @ModelAttribute("book") UpdateBookDTO dto, BindingResult result, Model model) {
+
         if (result.hasErrors()){
+            if (result.hasFieldErrors("publishedDate")){
+                String code = result.getFieldError("publishedDate").getCode();
+
+                if("typeMismatch".equals(code)){
+                    model.addAttribute("publishedDateError",
+                            "Please enter date in format yyyy-MM-dd");
+                }
+            }
+
             return "books/edit";
         }
 
