@@ -1,6 +1,7 @@
 package com.example.springweblab1.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
 
@@ -9,15 +10,17 @@ import java.time.LocalDate;
 public class UpdateBookDTO {
 
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Title is required")
     private String title;
-
+    @NotBlank(message = "Description is required" )
     private String description;
-    @PastOrPresent
+    @NotNull(message = "Published date is required")
+    @PastOrPresent(message = "Date must be today or earlier")
     private LocalDate publishedDate;
-    @NotBlank
+    @NotBlank(message = "Author is required")
     private String author;
-    @Positive
+    @NotNull(message = "Pages is required")
+    @Positive(message = "Pages must be a positive number")
     private Integer pages;
 
     public UpdateBookDTO(){

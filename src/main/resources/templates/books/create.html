@@ -2,6 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Create Book</title>
+
+    <style>
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .error-border {
+            border: 2px solid red;
+        }
+    </style>
 </head>
 <body>
 
@@ -11,26 +22,41 @@
     <div>
         <label>Title:</label>
         <input type="text" th:field="*{title}">
+        <div class="error"
+             th:if="${#fields.hasErrors('title')}"
+             th:errors="*{title}"></div>
     </div>
 
     <div>
         <label>Description:</label>
         <input type="text" th:field="*{description}">
+        <div class="error"
+             th:if="${#fields.hasErrors('description')}"
+             th:errors="*{description}"></div>
     </div>
 
     <div>
         <label>Published Date:</label>
         <input type="text" th:field="*{publishedDate}">
+        <div class="error"
+             th:if="${#fields.hasErrors('publishedDate')}"
+             th:errors="*{publishedDate}"></div>
     </div>
 
     <div>
         <label>Author:</label>
         <input type="text" th:field="*{author}">
+        <div class="error"
+             th:if="${#fields.hasErrors('author')}"
+             th:errors="*{author}"></div>
     </div>
 
     <div>
         <label>Pages:</label>
         <input type="text" th:field="*{pages}">
+        <div class="error"
+             th:if="${#fields.hasErrors('pages')}"
+             th:errors="*{pages}"></div>
     </div>
 
     <button type="submit">Save</button>

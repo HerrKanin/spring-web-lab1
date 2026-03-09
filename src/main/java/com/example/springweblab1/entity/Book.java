@@ -18,15 +18,11 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
-    private String title;
 
+    private String title;
     private String description;
-    @PastOrPresent
     private LocalDate publishedDate;
-    @NotBlank
     private String author;
-    @Positive
     private Integer pages;
 
     public Integer getPages() {

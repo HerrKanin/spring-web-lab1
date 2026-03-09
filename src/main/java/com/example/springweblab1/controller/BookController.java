@@ -4,8 +4,10 @@ import com.example.springweblab1.dto.BookDTO;
 import com.example.springweblab1.dto.CreateBookDTO;
 import com.example.springweblab1.dto.UpdateBookDTO;
 import com.example.springweblab1.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -31,7 +33,12 @@ public class BookController {
     }
 
     @PostMapping("/create")
-    public String createBook(@ModelAttribute("book") CreateBookDTO dto) {
+    public String createBook(@Valid @ModelAttribute("book") CreateBookDTO dto, BindingResult result) {
+
+        if(result.hasErrors()){
+            return "books/create";
+        }
+
         bookService.createBook(dto);
         return "redirect:/books";
     }
@@ -61,7 +68,11 @@ public class BookController {
     }
 
     @PostMapping("/edit")
-    public String updateBook(@ModelAttribute("book") UpdateBookDTO dto) {
+    public String updateBook(@Valid @ModelAttribute("book") UpdateBookDTO dto, BindingResult result) {
+        if (result.hasErrors()){
+            return "books/edit";
+        }
+
         bookService.updateBook(dto);
         return "redirect:/books";
     }
