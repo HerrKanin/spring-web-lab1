@@ -11,11 +11,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -124,5 +126,37 @@ public class BookServiceTest {
 
         verify(bookRepository).findById(1L);
         verify(bookRepository).save(existingBook);
+    }
+
+    @Test
+    void getById_shouldThrowExceptionWhenBookNotFound(){
+
+        when(bookRepository.findById(1L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            bookService.getById(1L);
+        });
+
+        assertEquals("Book not found", exception.getMessage());
+
+        verify(bookRepository).findById(1L);
+    }
+
+    @Test
+    void updateBook_shouldThrowExceptionWhenBookNotFound(){
+
+        UpdateBookDTO dto = new UpdateBookDTO();
+        dto.setId(1L);
+
+        when(bookRepository.findById(1L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            bookService.getById(1L);
+        });
+
+        assertEquals("Book not found", exception.getMessage());
+
+        verify(bookRepository).findById(1L);
+
     }
 }
