@@ -21,8 +21,9 @@ public class BookController {
     }
 
     @GetMapping
-    public String listBooks(Model model) {
-        model.addAttribute("books", bookService.getAll());
+    public String listBooks(@RequestParam(required = false) String search, Model model) {
+        model.addAttribute("books", bookService.searchBooks(search));
+        model.addAttribute("search", search);
         return "books/list";
     }
 

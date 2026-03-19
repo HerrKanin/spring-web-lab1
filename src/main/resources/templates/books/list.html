@@ -10,11 +10,6 @@
             padding: 40px;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
         .card {
             background: white;
             padding: 30px;
@@ -51,6 +46,15 @@
 
         .btn-primary:hover {
             background-color: #256628;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
         }
 
         .btn-warning {
@@ -114,6 +118,21 @@
             border-radius: 8px;
             margin-top: 20px;
         }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -124,6 +143,15 @@
             <h1>Book List</h1>
             <a th:href="@{/books/create}" class="btn btn-primary">Add Book</a>
         </div>
+
+        <form th:action="@{/books}" method="get" class="search-form">
+            <input type="text"
+                   name="search"
+                   th:value="${search}"
+                   placeholder="Search by title or author">
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a th:href="@{/books}" class="btn btn-seondary">Clear</a>
+        </form>
 
         <table th:if="${not #lists.isEmpty(books)}">
             <thead>

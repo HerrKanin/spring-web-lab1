@@ -27,6 +27,17 @@ public class BookService {
                 .toList();
     }
 
+    public List<BookDTO> searchBooks(String search){
+        if (search == null || search.isBlank()) {
+            return getAll();
+        }
+        return bookRepository
+                .findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(search, search)
+                .stream()
+                .map(BookMapper::toDTO)
+                .toList();
+    }
+
     public void createBook(CreateBookDTO dto){
        Book book = BookMapper.toEntity(dto);
        bookRepository.save(book);
