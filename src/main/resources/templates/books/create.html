@@ -125,7 +125,7 @@
 
             <div class="form-group">
                 <label>Title:</label>
-                <input type="text" th:field="*{title}">
+                <input type="text" th:field="*{title}" maxlength="50">
                 <div class="error"
                      th:if="${#fields.hasErrors('title')}"
                      th:errors="*{title}">
@@ -134,7 +134,7 @@
 
             <div class="form-group">
                 <label>Description:</label>
-                <input type="text" th:field="*{description}">
+                <input type="text" th:field="*{description}" maxlength="200">
                 <div class="error"
                      th:if="${#fields.hasErrors('description')}"
                      th:errors="*{description}">
@@ -159,7 +159,7 @@
 
             <div class="form-group">
                 <label>Author:</label>
-                <input type="text" th:field="*{author}">
+                <input type="text" th:field="*{author}" maxlength="50">
                 <div class="error"
                      th:if="${#fields.hasErrors('author')}"
                      th:errors="*{author}">

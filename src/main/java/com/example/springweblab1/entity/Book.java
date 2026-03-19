@@ -1,9 +1,6 @@
 package com.example.springweblab1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
@@ -18,10 +15,12 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(length = 50)
     private String title;
+    @Column(length = 200)
     private String description;
     private LocalDate publishedDate;
+    @Column(length = 50)
     private String author;
     private Integer pages;
 

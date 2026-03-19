@@ -1,13 +1,18 @@
 package com.example.springweblab1.dto;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class BookDTO {
 
     private Long id;
+    @Size(max = 50, message = "Title cannot be longer than 100 characters")
     private String title;
+    @Size(max = 200, message = "Description cannot be longer than 500 characters")
     private String description;
     private LocalDate publishedDate;
+    @Size(max = 50, message = "Author cannot be longer than 100 characters")
     private String author;
     private Integer pages;
 
