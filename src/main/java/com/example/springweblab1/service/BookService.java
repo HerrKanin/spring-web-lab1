@@ -4,6 +4,7 @@ import com.example.springweblab1.dto.BookDTO;
 import com.example.springweblab1.dto.CreateBookDTO;
 import com.example.springweblab1.dto.UpdateBookDTO;
 import com.example.springweblab1.entity.Book;
+import com.example.springweblab1.exception.ResourceNotFoundException;
 import com.example.springweblab1.mapper.BookMapper;
 import com.example.springweblab1.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class BookService {
 
     public void updateBook(UpdateBookDTO dto){
         Book book = bookRepository.findById(dto.getId())
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found"));
 
         BookMapper.updateEntity(dto, book);
 
@@ -46,7 +47,7 @@ public class BookService {
 
     public BookDTO getById(Long id){
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found"));
 
         return BookMapper.toDTO(book);
     }
