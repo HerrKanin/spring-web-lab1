@@ -4,7 +4,6 @@ import com.example.springweblab1.dto.BookDTO;
 import com.example.springweblab1.dto.CreateBookDTO;
 import com.example.springweblab1.dto.UpdateBookDTO;
 import com.example.springweblab1.entity.Book;
-import org.hibernate.sql.Update;
 
 public class BookMapper {
 

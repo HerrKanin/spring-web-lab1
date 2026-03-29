@@ -6,7 +6,6 @@ import com.example.springweblab1.dto.CreateBookDTO;
 import com.example.springweblab1.dto.UpdateBookDTO;
 import com.example.springweblab1.entity.Book;
 import org.junit.jupiter.api.Test;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 

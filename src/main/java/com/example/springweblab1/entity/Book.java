@@ -1,9 +1,7 @@
 package com.example.springweblab1.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+
 
 import java.time.LocalDate;
 
