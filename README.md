@@ -49,6 +49,14 @@ http://localhost:8080
 
 ---
 
+## Pagination
+
+The application uses pagination with a default page size of 5 books.
+
+To see pagination in action, make sure there are more than 5 books in the list.
+
+---
+
 ## 💡 Notering
 
 Projektet använder PostgreSQL via Docker.

@@ -7,6 +7,9 @@ import com.example.springweblab1.entity.Book;
 import com.example.springweblab1.exception.ResourceNotFoundException;
 import com.example.springweblab1.mapper.BookMapper;
 import com.example.springweblab1.repository.BookRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,15 +30,20 @@ public class BookService {
                 .toList();
     }
 
-    public List<BookDTO> searchBooks(String search){
+    public Page<BookDTO> searchBooks(String search, int page, int size){
+
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Book> booksPage;
+
         if (search == null || search.isBlank()) {
-            return getAll();
+            booksPage = bookRepository.findAll(pageable);
+        } else {
+            booksPage = bookRepository
+                    .findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(search, search, pageable);
+
         }
-        return bookRepository
-                .findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(search, search)
-                .stream()
-                .map(BookMapper::toDTO)
-                .toList();
+        return booksPage.map(BookMapper::toDTO);
     }
 
     public void createBook(CreateBookDTO dto){

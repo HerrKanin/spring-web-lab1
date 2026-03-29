@@ -5,6 +5,7 @@ import com.example.springweblab1.dto.CreateBookDTO;
 import com.example.springweblab1.dto.UpdateBookDTO;
 import com.example.springweblab1.service.BookService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,9 +22,18 @@ public class BookController {
     }
 
     @GetMapping
-    public String listBooks(@RequestParam(required = false) String search, Model model) {
-        model.addAttribute("books", bookService.searchBooks(search));
+    public String listBooks(@RequestParam(required = false) String search,
+                            @RequestParam(defaultValue = "0") int page,
+                            @RequestParam(defaultValue = "5") int size,
+                            Model model) {
+
+        Page<BookDTO> booksPage = bookService.searchBooks(search, page, size);
+
+        model.addAttribute("books", booksPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", booksPage.getTotalPages());
         model.addAttribute("search", search);
+        model.addAttribute("size", size);
         return "books/list";
     }
 

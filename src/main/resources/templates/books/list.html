@@ -10,6 +10,11 @@
             padding: 40px;
         }
 
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
         .card {
             background: white;
             padding: 30px;
@@ -129,7 +134,7 @@
 </head>
 <body>
 
-<div class="containter">
+<div class="container">
     <div class="card">
         <div class="top-bar">
             <h1>Book List</h1>
@@ -187,6 +192,23 @@
 
         <div class="empty-message" th:if="${#lists.isEmpty(books)}">
             No books found. Click "Add Book" to create your first book.
+        </div>
+
+        <div class="pagination" th:if="${totalPages > 1}">
+            <a th:if="${currentPage > 0 }"
+               th:href="@{/books(page=${currentPage -1}, size=${size}, search=${search})}">
+                Previous
+            </a>
+
+            <span class="page-info"
+            th:text="'Page ' + (${currentPage} + 1) + ' of ' + ${totalPages}">
+                Page 1 of 1
+            </span>
+
+            <a th:if="${currentPage + 1 < totalPages}"
+               th:href="@{/books(page=${currentPage + 1}, size=${size}, search=${search})}">
+                Next
+            </a>
         </div>
     </div>
 </div>
