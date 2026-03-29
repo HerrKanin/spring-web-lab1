@@ -29,9 +29,6 @@
             color: #222;
         }
 
-        .form.group {
-            margin-bottom: 18px;
-        }
 
         label {
             display: block;
@@ -77,11 +74,6 @@
             font-size: 12px;
         }
 
-        .action {
-            display: flex;
-            gap: 10px;
-            margin-top: 25px;
-        }
 
         .btn {
             display: inline-block;
@@ -128,7 +120,7 @@
 
             <div class="form-group">
                 <label>Title:</label>
-                <input type="text" th:field="*{title}" maxlength="50">
+                <input type="text" th:field="*{title}" maxlength="100">
                 <div class="error"
                      th:if="${#fields.hasErrors('title')}"
                      th:errors="*{title}">
@@ -137,7 +129,7 @@
 
             <div class="form-group">
                 <label>Description:</label>
-                <input type="text" th:field="*{description}" maxlength="200">
+                <input type="text" th:field="*{description}" maxlength="500">
                 <div class="error"
                      th:if="${#fields.hasErrors('description')}"
                      th:errors="*{description}">
@@ -162,7 +154,7 @@
 
             <div class="form-group">
                 <label>Author:</label>
-                <input type="text" th:field="*{author}" maxlength="50">
+                <input type="text" th:field="*{author}" maxlength="100">
                 <div class)="error"
                      th:if="${#fields.hasErrors('author')}"
                      th:errors="*{author}">

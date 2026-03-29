@@ -13,12 +13,12 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 50)
+    @Column(length = 100)
     private String title;
-    @Column(length = 200)
+    @Column(length = 500)
     private String description;
     private LocalDate publishedDate;
-    @Column(length = 50)
+    @Column(length = 100)
     private String author;
     private Integer pages;
 
