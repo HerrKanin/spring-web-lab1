@@ -150,7 +150,7 @@ public class BookServiceTest {
         when(bookRepository.findById(1L)).thenReturn(Optional.empty());
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            bookService.getById(1L);
+            bookService.updateBook(dto);
         });
 
         assertEquals("Book not found", exception.getMessage());
